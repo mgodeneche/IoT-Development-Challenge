@@ -48,7 +48,7 @@ class Injections extends Simulation {
 	//this array contains the average of all the values sent to each sensorType
 	var avrgeValues = Array(0,0,0,0,0,0,0,0,0,0)
 	//the number of messages sent by a single injector 
-	var numberOfMsgs = 10
+	var numberOfMsgs = 10000
 
 
 	val httpProtocol = http
@@ -282,7 +282,7 @@ class Injections extends Simulation {
 		//end Time
   		simulationEndTime=System.nanoTime()
 
-  		println("la simulation est finie traitement en cours...")
+  		println("La simulation est finie traitement en cours...")
   		//this function retreives the values of a map made from a json object
   		def show(x: Option[Any],b:String) = x match {
       		case Some(m: Map[String, Any]) => m(b) match{
@@ -314,7 +314,7 @@ class Injections extends Simulation {
 	 		   show(SynthesisJson,"maxValue")==maxValues(a-1) && 
 	 		   show(SynthesisJson,"mediumValue")==avrgeValues(a-1) ){
 
-	 				println(show(SynthesisJson,"sensorType")+"results are valid")
+	 				println(show(SynthesisJson,"sensorType")+"les résultats sont valides")
 	 				
 	 		}else{
 	 				println(show(SynthesisJson,"sensorType")+"les résultats ne sont pas valide!!!!")
@@ -327,9 +327,9 @@ class Injections extends Simulation {
 		//if the results are valid they are sent to the leaderBoard
 		if(resultatValid==true){
 
-			println("Temp d'execution:"+time+" Equipe:"+teamName+" rattachement:"+teameLocation)
+			println("Temps d'execution:"+time+" Equipe:"+teamName+" rattachement:"+teameLocation)
 
-  			val password=scala.io.StdIn.readLine("entrez le mot de pass Pour envoyer le resultat?: ")
+  			val password=scala.io.StdIn.readLine("Entrez le mot de passe pour envoyer le resultat?: ")
         	 	
         	 	val urlLeaderBoard="I should put my leaderboard here to be changed for the people to be able to send their results"
 
@@ -344,15 +344,15 @@ class Injections extends Simulation {
                 	val response = client.execute(post)
 
         		  if(response.getStatusLine().getStatusCode()==200){
-                			println("votre résultat est envoyé, n'oubliez pas de regarder le leaderBoard pour voir votre classement...")
+                			println("Votre résultat est envoyé, n'oubliez pas de regarder le leaderBoard pour voir votre classement...")
         		 }else{
                 			println("L'envoi a échoué!!! le résultat n'a pas été envoyé au leaderboard!!!")
         		 }
 
 		}else{
-			println("votre synthése n'est pas valide, vous ne pouvez pas envoyer vos résultats!")
+			println("Votre synthèse n'est pas valide, vous ne pouvez pas envoyer vos résultats!")
 		}
 	 
-        	 println("traitement effectué!")  
+        	 println("Traitement effectué!")  
 	 }
 }
